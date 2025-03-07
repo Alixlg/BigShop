@@ -1,0 +1,21 @@
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0.5em;
+  justify-content: right;
+}
+
+.titel {
+  text-align: center;
+  padding: 0.3em;
+  font-size: x-large;
+  background-color: rgb(71, 181, 255);
+}
+
+.empty {
+  padding: 1em;
+  margin: 0.3em;
+  border-radius: 0.7em;
+  background-color: rgb(248, 164, 164);
+}
+

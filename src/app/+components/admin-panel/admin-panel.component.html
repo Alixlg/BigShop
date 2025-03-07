@@ -1,0 +1,41 @@
+<div class="form">
+    <div class="addProduct">
+        <button (click)="addProductVisible =! addProductVisible">اضافه کردن محصول</button>
+    </div>
+
+    @if (addProductVisible) {
+    <div class="addProductForm">
+        <input [(ngModel)]="productBrand" type="text" placeholder="برند محصول">
+        <input [(ngModel)]="productPrice" placeholder="قیمت محصول">
+        <input [(ngModel)]="productTitle" placeholder="نام نمایشی محصول">
+        <input [(ngModel)]="productPic" type="text" placeholder="لینک عکس محصول">
+        <button (click)="addProduct()">ثبت</button>
+    </div>
+    }
+    <div class="delProducts">
+        <button (click)="delProductVisible =! delProductVisible">حذف محصول</button>
+    </div>
+
+    @if (delProductVisible) {
+    <div class="delProductsList">
+        @for (p of productsObj.products; track $index) {
+        <div>
+            <span> شناسه : {{p.id}} |</span>
+            <span> نام : {{p.title}} |</span>
+            <span> برند : {{p.brand}} |</span>
+            <span> قیمت : {{p.price}} |</span>
+            <button (click)="delProduct(p)">حذف</button>
+        </div>
+        }@empty {
+        <div class="empty">
+            هیچ محصولی وجود ندارد
+        </div>
+        }
+    </div>
+    }
+</div>
+@if (alert != '') {
+<div class="alert">
+    <p>{{alert}}</p>
+</div>
+}

@@ -1,0 +1,10 @@
+<div class="titel">محصولات</div>
+<div class="products">
+  @for (item of productsObj.products; track $index) {
+  <app-product (onBuy)="buy($event)" [product]="item"></app-product>
+  }@empty {
+  <div class="empty">
+    هیچ محصولی وجود ندارد
+  </div>
+  }
+</div>
