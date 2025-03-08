@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { ProductComponent } from "../products/product/product.component";
 import { BasketService } from '../../+services/basket.service';
 import { Product } from '../../+models/product';
@@ -9,7 +9,7 @@ import { Product } from '../../+models/product';
   templateUrl: './basket.component.html',
   styleUrl: './basket.component.scss'
 })
-export class BasketComponent {
+export class BasketComponent implements OnInit {
   @Input() basketProductsObj = inject(BasketService);
 
   remove($event: Product) {
@@ -22,7 +22,12 @@ export class BasketComponent {
       if (product) {
         product.count -= 1;
         this.basketProductsObj.basket.push(product);
+        this.basketProductsObj.basket.sort((a, b) => b.id - a.id);
       }
     }
+  }
+
+  ngOnInit(): void {
+    this.basketProductsObj.basket.sort((a, b) => b.id - a.id);
   }
 }

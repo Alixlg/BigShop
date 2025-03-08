@@ -13,6 +13,8 @@ import { Product } from '../../+models/product';
 export class ProductsComponent {
   productsObj = inject(ProductService);
   basketProductsObj = inject(BasketService);
+  sortMenuVisible = false;
+  sortByThing = '';
 
   buy($event: Product) {
     if (this.basketProductsObj.basket.every(p => p.id != $event.id)) {
@@ -25,6 +27,24 @@ export class ProductsComponent {
         product.count += 1;
         this.basketProductsObj.basket.push(product);
       }
+    }
+  }
+
+  sortBy() {
+    switch (this.sortByThing) {
+      case 'price-up':
+        return this.productsObj.products.sort((a, b) => Number(b.price) - Number(a.price));
+
+      case 'price-down':
+        return this.productsObj.products.sort((a, b) => Number(a.price) - Number(b.price));
+
+      case 'new-products':
+        return this.productsObj.products.sort((a, b) => b.id - a.id);
+
+      case 'old-products':
+        return this.productsObj.products.sort((a, b) => a.id - b.id);
+
+      default: return this.productsObj.products;
     }
   }
 }
