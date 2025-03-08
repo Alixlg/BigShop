@@ -1,18 +1,19 @@
 <div class="form">
-    <div class="addProduct">
+    <div class="buttons">
         <button (click)="addProductVisible =! addProductVisible">اضافه کردن محصول</button>
     </div>
 
     @if (addProductVisible) {
     <div class="addProductForm">
         <input [(ngModel)]="productBrand" type="text" placeholder="برند محصول">
-        <input [(ngModel)]="productPrice" placeholder="قیمت محصول">
-        <input [(ngModel)]="productTitle" placeholder="نام نمایشی محصول">
+        <input [(ngModel)]="productPrice" type="text" placeholder="قیمت محصول">
+        <input [(ngModel)]="productTitle" type="text" placeholder="نام نمایشی محصول">
         <input [(ngModel)]="productPic" type="text" placeholder="لینک عکس محصول">
         <button (click)="addProduct()">ثبت</button>
     </div>
     }
-    <div class="delProducts">
+
+    <div class="buttons">
         <button (click)="delProductVisible =! delProductVisible">حذف محصول</button>
     </div>
 
@@ -31,6 +32,28 @@
             هیچ محصولی وجود ندارد
         </div>
         }
+    </div>
+    }
+
+    <div class="buttons">
+        <button (click)="searchProductVisible =! searchProductVisible;editProductVisible = false">ویرایش محصول</button>
+    </div>
+
+    @if (searchProductVisible) {
+    <div class="editProductsBox">
+        <input type="number" [(ngModel)]="searchId" placeholder="لطفا شناسه محصول را وارد کنید و اینتر بزنید">
+        <button (click)="searchProduct()">جست و جو</button>
+    </div>
+    }
+    @if (editProductVisible) {
+    <div class="editProductsBox">
+        <span>لطفا مقادیر جدید را وارد کنید</span>
+        <input [(ngModel)]="productBrand" type="text" placeholder="برند : {{searchedProduct?.brand??'یافت نشد'}}">
+        <input [(ngModel)]="productPrice" type="text" placeholder="قیمت : {{searchedProduct?.price??'یافت نشد'}}">
+        <input [(ngModel)]="productTitle" type="text" placeholder="نام نمایشی : {{searchedProduct?.title??'یافت نشد'}}">
+        <input [(ngModel)]="productPic" type="text" placeholder="لینک عکس : {{searchedProduct?.pic??'یافت نشد'}}">
+        <img [src]="searchedProduct?.pic" alt="">
+        <button (click)="editProduct()">ثبت</button>
     </div>
     }
 </div>

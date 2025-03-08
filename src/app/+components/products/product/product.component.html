@@ -9,7 +9,8 @@
         {{product.count}}x
         }
       </span>
-      <span>{{product.price | number}}</span>
+      <!-- har bar ke taghiri dar safhe ijad shavad in func ejra mishavad (render dobare)! -->
+      <span>{{countPriceUpdater()| number}}</span>
     </div>
     @if (!isBasket) {
     <button (click)="onBuy.emit(product)">
