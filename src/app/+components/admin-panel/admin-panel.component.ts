@@ -104,6 +104,10 @@ export class AdminPanelComponent {
       this.basketObj.basket = this.basketObj.basket.filter(x => x.id != this.searchedProduct?.id);
       this.productsObj.products.push(this.searchedProduct);
 
+      this.productBrand = '';
+      this.productTitle = '';
+      this.productPrice = '';
+      this.productPic = '';
       this.alert = 'محصول شما با موفقیت ویرایش شد';
     }
     else {
